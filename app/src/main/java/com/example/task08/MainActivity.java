@@ -1,24 +1,41 @@
 package com.example.task08;
 
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    ImageView imageView2;
+    ImageButton btnClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        imageView2 = findViewById(R.id.imageView2);
+        btnClick = findViewById(R.id.btnClick);
+
+        btnClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = (int) (Math.random() * 3) + 1;
+
+                if (num == 1) {
+                    imageView2.setImageResource(R.drawable.img_3);
+                    btnClick.setImageResource(R.drawable.img);
+                }
+                else if (num == 2) {
+                    imageView2.setImageResource(R.drawable.img_4);
+                    btnClick.setImageResource(R.drawable.img_2);
+                }
+                else {
+                    imageView2.setImageResource(R.drawable.img_5);
+                    btnClick.setImageResource(R.drawable.img_1);
+                }
+            }
         });
     }
 }
